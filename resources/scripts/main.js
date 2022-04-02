@@ -1,2 +1,2 @@
-require('./bootstrap');
-console.log("Hello, World!")
+require('./bootstrap.js');
+import './uikit';
