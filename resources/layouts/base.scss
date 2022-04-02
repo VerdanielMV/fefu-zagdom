@@ -1,0 +1,30 @@
+.Layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+
+    &__main {
+        padding-left: 5%;
+        flex: 1;
+        background-color: rgb(167, 168, 216);
+    }
+    &__footer {
+        font-weight: bold;
+        padding-left: 5%;
+        padding-top: 4%;
+        padding-bottom: 1%;
+        background-color: rgb(75, 76, 92);
+    }
+
+    &__header {
+        font-weight: bold;
+        padding-left: 5%;
+        padding-top: 4%;
+        padding-bottom: 1%;
+        background-color: rgb(122, 115, 172);
+    }
+} 

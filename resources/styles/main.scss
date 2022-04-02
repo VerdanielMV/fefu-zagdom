@@ -1,0 +1,17 @@
+@import "../layouts/base.scss";
+
+$primary: rgba(58, 2, 2, 0.74);
+$secondary: rgb(5, 5, 105);
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.hello{
+    color: $primary;
+    font-family:'Montserrat', sans-serif;
+}
+
+.lorem{
+    color: $secondary;
+}
