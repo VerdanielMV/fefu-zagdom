@@ -14,8 +14,11 @@
  {% macro phone(value) %}
      <a href="tel:{{ value }}" class="PrimaryPhone">
          <img
-             src="{{ 'icons/telephone.svg' |asset }}"
+             class="PrimaryPhone__icon"
+             src="{{ 'icons/telephone.svg'|asset }}"
              alt="Телефон"
+             width="16"
+             height="16"
          >
          {{ value }}
      </a>
@@ -29,26 +32,50 @@
 
 {% macro content(scope) %}
      {% import _self as macros %}
-
+     
     <div class="Container Header">
         <div class="Header__logo">
             {{ macros.logo }}
         </div>
 
-        {% include '@components/site-nav/site-nav.twig' with {
-            items: scope.menu,
-        } %}
+        <nav class="Header__nav">
+            {% include '@components/site-nav/site-nav.twig' with {
+                items: scope.menu,
+            } %}
+        </nav>
 
         <div class="Header__phone">
             {{ macros.phone(scope.phone) }}
         </div>
 
-        {{ macros.button }}
+        <div class="Header__feedbackButton">
+            {{ macros.button }}
+        </div>
+
+        <div class="Header__offcanvasButton">
+            {{ macros.offcanvasButton }}
+        </div>
     </div>
+    {{ macros.offcanvas(scope) }}
+{% endmacro %}
+
+{% macro offcanvasButton() %}
+    <button
+        type="button"
+        class="Button Button--primary Button--icon"
+        uk-toggle="target: #offcanvas"
+        id="offcanvas-button"
+    >
+        <img
+            src="{{ 'icons/list-white.svg'|asset }}"
+            width="24"
+            height="14"
+            alt=""
+        >
+    </button>
 {% endmacro %}
 
 {# mock-data #}
-
 {% set scope = {
         menu: [
             {
@@ -65,6 +92,30 @@
             },
         ],
         phone: '+7 (908) 900-90-90',
-    } %}
+} %}
 
-{{ macros.content(scope) }} 
+{% macro offcanvas(scope) %}
+    <div id="offcanvas" class="Offcanvas" uk-offcanvas="overlay: true; flip: true">
+        <div class="uk-offcanvas-bar Offcanvas__layout">
+            <button class="uk-offcanvas-close Offcanvas__close" type="button">
+                <img
+                    src="{{ 'icons/cross-white.svg'|asset }}"
+                    width="12"
+                    height="12"
+                    alt=""
+                >
+            </button>
+            <nav class="Offcanvas__nav">
+                {% include '@components/site-nav/site-nav.twig' with {
+                    items: scope.menu,
+                    column: true,
+                } %}
+            </nav>
+            <div class="Offcanvas__contacts">
+                {% include '@components/contacts/contacts.twig' %}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{{ macros.content(scope) }}

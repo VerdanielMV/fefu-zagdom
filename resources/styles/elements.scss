@@ -3,6 +3,7 @@
     font-size: toRem(14px);
     line-height: 1.2;
     color: $color-green--dark;
+    font-family: $base-heading-font-family;
 
     &:hover,
     &:focus,
@@ -12,6 +13,10 @@
 
     &__icon {
         margin-right: 8px;
+    }
+
+    &--primary {
+        @extend .uk-button-primary;
     }
 }
 
